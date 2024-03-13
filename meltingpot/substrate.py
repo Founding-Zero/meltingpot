@@ -17,11 +17,10 @@ from collections.abc import Sequence
 
 from meltingpot.configs import substrates as substrate_configs
 from meltingpot.utils.substrates import substrate
-from meltingpot.utils.substrates import substrate_factory
+from sen.principal_substrate import PrincipalSubstrateFactory, PrincipalSubstrate
+from sen.principal import Principal
 from ml_collections import config_dict
 
-from SocialEnvDesign import principal_substrate
-from SocialEnvDesign.principal import Principal
 
 SUBSTRATES = substrate_configs.SUBSTRATES
 
@@ -67,7 +66,7 @@ def build_principal_from_config(
     *,
     roles: Sequence[str],
     principal: Principal
-) -> principal_substrate.PrincipalSubstrate:
+) -> PrincipalSubstrate:
   """Builds a substrate from the provided config.
 
   Args:
@@ -82,20 +81,20 @@ def build_principal_from_config(
   return get_factory_from_config(config).build_principal(roles, principal)
 
 
-def get_factory(name: str) -> substrate_factory.SubstrateFactory:
+def get_factory(name: str) -> PrincipalSubstrateFactory:
   """Returns the factory for the specified substrate."""
   config = substrate_configs.get_config(name)
   return get_factory_from_config(config)
 
 
 def get_factory_from_config(
-    config: config_dict.ConfigDict) -> substrate_factory.SubstrateFactory:
+    config: config_dict.ConfigDict) -> PrincipalSubstrateFactory:
   """Returns a factory from the provided config."""
 
   def lab2d_settings_builder(roles):
     return config.lab2d_settings_builder(roles=roles, config=config)
 
-  return substrate_factory.SubstrateFactory(
+  return PrincipalSubstrateFactory(
       lab2d_settings_builder=lab2d_settings_builder,
       individual_observations=config.individual_observation_names,
       global_observations=config.global_observation_names,
