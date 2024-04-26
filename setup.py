@@ -103,7 +103,7 @@ setuptools.setup(
             'lua/modules/*.lua',
         ],
     },
-    python_requires='>=3.11',
+    python_requires='>=3.10',
     install_requires=[
         'absl-py',
         'chex',
