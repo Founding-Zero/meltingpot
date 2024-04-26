@@ -301,14 +301,14 @@ def create_scene():
               "component": "Neighborhoods",
               "kwargs": {}
           },
-          {
-              "component": "StochasticIntervalEpisodeEnding",
-              "kwargs": {
-                  "minimumFramesPerEpisode": 1000,
-                  "intervalLength": 100,  # Set equal to unroll length.
-                  "probabilityTerminationPerInterval": 0.15
-              }
-          }
+        #   {
+        #       "component": "StochasticIntervalEpisodeEnding",
+        #       "kwargs": {
+        #           "minimumFramesPerEpisode": 1000,
+        #           "intervalLength": 100,  # Set equal to unroll length.
+        #           "probabilityTerminationPerInterval": 0.15
+        #       }
+        #   }
       ]
   }
 
