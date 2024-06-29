@@ -36,15 +36,15 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       SYSTEM_VERSION_COMPAT: 0  # See https://github.com/actions/setup-python/issues/279.
-    timeout-minutes: 120
+    timeout-minutes: 180
     strategy:
       fail-fast: false
       matrix:
         os:
-          - macos-11
           - macos-12
+          - macos-latest
           - ubuntu-20.04
-          - ubuntu-22.04
+          - ubuntu-latest
         python-version:
           - '3.11'
 
