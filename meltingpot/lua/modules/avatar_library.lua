@@ -751,7 +751,7 @@ function Zapper:disallowZapping()
 end
 
 function Zapper:allowZapping()
-  self._disallowZapping = false
+  self._disallowZapping = true
 end
 
 --[[ Prevent zapping for `numFrames` steps, then allow it again.]]
