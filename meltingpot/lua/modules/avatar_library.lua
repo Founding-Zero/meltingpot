@@ -277,6 +277,29 @@ function Avatar:addObservations(tileSet, world, observations)
       end
   }
   observations[#observations + 1] = spec
+
+    -- Add new observation for live apples
+  local id = self._config._index
+  local stringId = tostring(id)
+
+  observations[#observations + 1] = {
+    name = stringId .. '.LIVE_APPLE_COUNT',
+    type = 'Doubles',
+    shape = {},  -- Scalar value
+    func = function(grid)
+      local liveAppleCount = 0
+      local allGameObjects = self.gameObject.simulation:getAllGameObjects()
+      for _, obj in pairs(allGameObjects) do
+        -- if obj:hasComponent('StateManager') and
+        --    obj:getComponent('StateManager'):getState() == 'apple' then
+        if obj:getState() == 'apple' then
+          liveAppleCount = liveAppleCount + 1
+        end
+      end
+      return liveAppleCount
+    end
+  }
+
 end
 
 function Avatar:reset()

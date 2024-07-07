@@ -135,5 +135,5 @@ def build_substrate(
   env = discrete_action_wrapper.Wrapper(env, action_table=action_table)
   # Add a wrapper that augments adds an observation of the collective
   # reward (sum of all players' rewards).
-  env = collective_reward_wrapper.CollectiveRewardWrapper(env)
+  env = collective_reward_wrapper.CollectiveRewardWrapper(env) #!!! maybe use this?
   return Substrate(env)
