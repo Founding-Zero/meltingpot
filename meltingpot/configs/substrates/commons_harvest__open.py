@@ -644,6 +644,7 @@ def get_config():
   config.individual_observation_names = [
       "RGB",
       "READY_TO_SHOOT",
+      "LIVE_APPLE_COUNT"
   ]
   config.global_observation_names = [
       "WORLD.RGB",
