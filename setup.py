@@ -135,7 +135,6 @@ setuptools.setup(
         'pandas',
         'pygame',
         'reactivex',
-        'tensorflow',
     ],
     extras_require={
         # Used in development.
