@@ -14,7 +14,7 @@ limitations under the License.
 ]]
 
 --[[ A library of common components that one may add to game objects. The two
-mandatory components (StateManager, Transform) are also implemented here.
+mandatory components (StateManager, o) are also implemented here.
 ]]
 
 local helpers = require 'common.helpers'
@@ -879,6 +879,7 @@ end
 function StochasticEpisodeEnding:registerUpdaters(updaterRegistry)
   updaterRegistry:registerUpdater{
       updateFn = function () self.gameObject.simulation:endEpisode() end,
+      probability = self._config.probabilityTerminationPerStep,
       startFrame = self._config.minimumFramesPerEpisode,
   }
 end
@@ -1026,6 +1027,7 @@ function FixedRateRegrow:registerUpdaters(updaterRegistry)
   -- object is in the `waitState` state.
   updaterRegistry:registerUpdater{
     state = self._config.waitState,
+    probability = self._config.regrowRate,
     updateFn = function() self.gameObject:setState(self._config.liveState) end,
   }
 end

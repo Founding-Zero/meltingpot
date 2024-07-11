@@ -125,6 +125,7 @@ function Avatar:__init__(kwargs)
     self._config.postInitialSpawnGroup = kwargs.postInitialSpawnGroup
   end
   self._spawnGroup = self._config.initialSpawnGroup
+
 end
 
 -- Call initializeVolatileVariables during `awake` and `reset`.
@@ -137,6 +138,7 @@ function Avatar:_initializeVolatileVariables()
   self._connectedPiecesSet = {}
   self._freezeCounter = 0
   self._removalCounter = 0
+  self._index = kwargs.index
 end
 
 function Avatar:awake()
@@ -189,16 +191,15 @@ function Avatar:registerUpdaters(updaterRegistry)
       end
     end
   end
-
   if self.useAbsoluteCoordinates then
     updaterRegistry:registerUpdater{
         updateFn = moveAbsolute,
-        priority = 150,
+        priority = 200*self._index,
     }
   else
     updaterRegistry:registerUpdater{
         updateFn = move,
-        priority = 150,
+        priority = 200*self._index,
     }
   end
 end

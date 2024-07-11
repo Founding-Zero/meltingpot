@@ -142,7 +142,7 @@ def locate_and_overwrite_level_directory(
 def builder(
     lab2d_settings: Settings,
     prefab_overrides: Optional[Settings] = None,
-    env_seed: Optional[int] = 42,
+    env_seed: Optional[int] = None,
     **settings) -> dmlab2d.Environment:
   """Builds a Melting Pot environment.
 
@@ -171,14 +171,15 @@ def builder(
   # Convert settings from python to Lua format.
   lab2d_settings_dict = parse_python_settings_for_dmlab2d(lab2d_settings)
 
+  #This is fine because it uses the python rng
   if env_seed is None:
     # Select a long seed different than zero.
     env_seed = random.randint(1, _MAX_SEED)
   env_seeds = (seed % (_MAX_SEED + 1) for seed in itertools.count(env_seed))
-  seed  = 42
+
 
   def build_environment():
-    seed = 42
+    seed = next(env_seeds)
     lab2d_settings_dict["env_seed"] = str(seed)  # Sets the Lua seed.
     env_raw = dmlab2d.Lab2d(_DMLAB2D_ROOT, lab2d_settings_dict)
     observation_names = env_raw.observation_names()

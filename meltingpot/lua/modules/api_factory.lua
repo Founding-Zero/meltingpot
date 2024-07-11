@@ -35,7 +35,7 @@ local function apiFactory(env)
           },
       },
       _settings = {
-          env_seed = 2,
+          env_seed = 1,
           numPlayers = 1,
           spriteSize = 16,
           simulation = env.Simulation.defaultSettings(),
@@ -53,7 +53,7 @@ local function apiFactory(env)
   function api:init(kwargs)
     read_settings.apply(tables.flatten(env.settings), self._settings)
     read_settings.apply(kwargs, self._settings)
-    random:seed(2)
+    random:seed(self._settings.env_seed)
 
     self.simulation = env.Simulation{
         numPlayers = self._settings.numPlayers,
