@@ -130,7 +130,7 @@ function UpdaterRegistry:registerUpdater(params)
     params[1] or params.updateFn,
     params[2] or params.priority,
     params[3] or params.startFrame,
-    params[4] or params.probability,
+    1.0,
     params[5] or params.group,
     params[6] or params.state,
     params[7] or params.states,
@@ -150,7 +150,7 @@ function UpdaterRegistry:registerUpdater(params)
   table.insert(self._updateTable[priority],
                {updateFn = updateFn,
                 startFrame = startFrame,
-                probability = probability,
+                probability = 1.0,
                 group = group,
                 state = state,
                 states = states,
@@ -239,7 +239,7 @@ function UpdaterRegistry:mergeWith(updaterRegistry)
             updateFn = updateSpec.updateFn,
             priority = priority,
             startFrame = updateSpec.startFrame,
-            probability = updateSpec.probability,
+            probability =1.0,
             group = updateSpec.group,
             states = updateSpec.states,
             _updaterName = updateSpec._updaterName}
@@ -293,7 +293,7 @@ function UpdaterRegistry:registerGrid(grid, callbacks)
             -- update really should be called `updaterName`
             update = updateSpec._updaterName,
             group = updateSpec.group,
-            probability = updateSpec.probability,
+            probability = 1.0,
             startFrame = updateSpec.startFrame,
         }
         updaterNames[updateSpec._updaterName] = true

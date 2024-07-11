@@ -63,7 +63,7 @@ function Avatar:__init__(kwargs)
       {'waitState', args.stringType},
       -- `speed` (float >=0 and <= 1.0): If 1.0 then all movement actions are
       --   executed, otherwise prevent movements with probability 1 - speed.
-      {'speed', args.default(1.0), args.ge(0.0), args.le(1.0)},
+      {'speed', 1.0},
       {'actionOrder', args.default({'move', 'turn'}), args.tableType},
       {'actionSpec', args.default(
         {
@@ -194,13 +194,11 @@ function Avatar:registerUpdaters(updaterRegistry)
     updaterRegistry:registerUpdater{
         updateFn = moveAbsolute,
         priority = 150,
-        probability = self._speed,
     }
   else
     updaterRegistry:registerUpdater{
         updateFn = move,
         priority = 150,
-        probability = self._speed,
     }
   end
 end
