@@ -63,7 +63,7 @@ function Avatar:__init__(kwargs)
       {'waitState', args.stringType},
       -- `speed` (float >=0 and <= 1.0): If 1.0 then all movement actions are
       --   executed, otherwise prevent movements with probability 1 - speed.
-      {'speed', args.default(1.0), args.ge(0.0), args.le(1.0)},
+      {'speed', 1.0},
       {'actionOrder', args.default({'move', 'turn'}), args.tableType},
       {'actionSpec', args.default(
         {
@@ -125,6 +125,7 @@ function Avatar:__init__(kwargs)
     self._config.postInitialSpawnGroup = kwargs.postInitialSpawnGroup
   end
   self._spawnGroup = self._config.initialSpawnGroup
+
 end
 
 -- Call initializeVolatileVariables during `awake` and `reset`.
@@ -137,6 +138,7 @@ function Avatar:_initializeVolatileVariables()
   self._connectedPiecesSet = {}
   self._freezeCounter = 0
   self._removalCounter = 0
+  self._index = kwargs.index
 end
 
 function Avatar:awake()
@@ -189,18 +191,15 @@ function Avatar:registerUpdaters(updaterRegistry)
       end
     end
   end
-
   if self.useAbsoluteCoordinates then
     updaterRegistry:registerUpdater{
         updateFn = moveAbsolute,
-        priority = 150,
-        probability = self._speed,
+        priority = 200*self._index,
     }
   else
     updaterRegistry:registerUpdater{
         updateFn = move,
-        priority = 150,
-        probability = self._speed,
+        priority = 200*self._index,
     }
   end
 end
