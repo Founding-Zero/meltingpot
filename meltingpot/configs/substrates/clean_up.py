@@ -60,14 +60,14 @@ WHFFHFFHHFHFHFHFHFHFHHFHFFFHFW
 WHFHFHFFHFHFHFHFHFHFHHFHFFFHFW
 WHFFFFFFHFHFHFHFHFHFHHFHFFFHFW
 W==============+~FHHHHHHf====W
-W   P    P      ===+~SSf     W
-W     P     P   P  <~Sf  P   W
-W             P   P<~S>      W
-W   P    P         <~S>   P  W
-W               P  <~S>P     W
-W     P           P<~S>      W
-W           P      <~S> P    W
-W  P             P <~S>      W
+W               ===+~SSf     W
+W       Z          <~Sf      W
+W    Y     X       <~S>      W
+W       L          <~S>      W
+W    C     D       <~S>      W
+W       G          <~S>      W
+W                  <~S>      W
+W                  <~S>      W
 W^T^T^T^T^T^T^T^T^T;~S,^T^T^TW
 WBBBBBBBBBBBBBBBBBBBssBBBBBBBW
 WBBBBBBBBBBBBBBBBBBBBBBBBBBBBW
@@ -80,7 +80,13 @@ WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 CHAR_PREFAB_MAP = {
     "W": "wall",
     " ": "sand",
-    "P": {"type": "all", "list": ["sand", "spawn_point"]},
+    "Z": {"type": "all", "list": ["sand", "spawn3"]},
+    "Y": {"type": "all", "list": ["sand", "spawn4"]},
+    "X": {"type": "all", "list": ["sand", "spawn1"]},
+    "L": {"type": "all", "list": ["sand", "spawn2"]},
+    "C": {"type": "all", "list": ["sand", "spawn5"]},
+    "D": {"type": "all", "list": ["sand", "spawn6"]},
+    "G": {"type": "all", "list": ["sand", "spawn7"]},
     "B": {"type": "all", "list": ["grass", "potential_apple"]},
     "s": {"type": "all", "list": ["grass", "shadow_n"]},
     "+": {"type": "all", "list": ["sand", "shadow_e", "shadow_n"]},
@@ -375,7 +381,7 @@ WALL = {
     ],
 }
 
-SPAWN_POINT = {
+SPAWN_POINT1 = {
     "name": "spawnPoint",
     "components": [
         {
@@ -383,7 +389,138 @@ SPAWN_POINT = {
             "kwargs": {
                 "initialState": "spawnPoint",
                 "stateConfigs": [
-                    {"state": "spawnPoint", "layer": "logic", "groups": ["spawnPoints"]}
+                    {
+                        "state": "spawnPoint",
+                        "layer": "alternateLogic",
+                        "groups": ["spawn1"],
+                    }
+                ],
+            },
+        },
+        {
+            "component": "Transform",
+        },
+    ],
+}
+
+SPAWN_POINT2 = {
+    "name": "spawnPoint",
+    "components": [
+        {
+            "component": "StateManager",
+            "kwargs": {
+                "initialState": "spawnPoint",
+                "stateConfigs": [
+                    {
+                        "state": "spawnPoint",
+                        "layer": "alternateLogic",
+                        "groups": ["spawn2"],
+                    }
+                ],
+            },
+        },
+        {
+            "component": "Transform",
+        },
+    ],
+}
+SPAWN_POINT3 = {
+    "name": "spawnPoint",
+    "components": [
+        {
+            "component": "StateManager",
+            "kwargs": {
+                "initialState": "spawnPoint",
+                "stateConfigs": [
+                    {
+                        "state": "spawnPoint",
+                        "layer": "alternateLogic",
+                        "groups": ["spawn3"],
+                    }
+                ],
+            },
+        },
+        {
+            "component": "Transform",
+        },
+    ],
+}
+SPAWN_POINT4 = {
+    "name": "spawnPoint",
+    "components": [
+        {
+            "component": "StateManager",
+            "kwargs": {
+                "initialState": "spawnPoint",
+                "stateConfigs": [
+                    {
+                        "state": "spawnPoint",
+                        "layer": "alternateLogic",
+                        "groups": ["spawn4"],
+                    }
+                ],
+            },
+        },
+        {
+            "component": "Transform",
+        },
+    ],
+}
+SPAWN_POINT5 = {
+    "name": "spawnPoint",
+    "components": [
+        {
+            "component": "StateManager",
+            "kwargs": {
+                "initialState": "spawnPoint",
+                "stateConfigs": [
+                    {
+                        "state": "spawnPoint",
+                        "layer": "alternateLogic",
+                        "groups": ["spawn5"],
+                    }
+                ],
+            },
+        },
+        {
+            "component": "Transform",
+        },
+    ],
+}
+SPAWN_POINT6 = {
+    "name": "spawnPoint",
+    "components": [
+        {
+            "component": "StateManager",
+            "kwargs": {
+                "initialState": "spawnPoint",
+                "stateConfigs": [
+                    {
+                        "state": "spawnPoint",
+                        "layer": "alternateLogic",
+                        "groups": ["spawn6"],
+                    }
+                ],
+            },
+        },
+        {
+            "component": "Transform",
+        },
+    ],
+}
+SPAWN_POINT7 = {
+    "name": "spawnPoint",
+    "components": [
+        {
+            "component": "StateManager",
+            "kwargs": {
+                "initialState": "spawnPoint",
+                "stateConfigs": [
+                    {
+                        "state": "spawnPoint",
+                        "layer": "alternateLogic",
+                        "groups": ["spawn7"],
+                    }
                 ],
             },
         },
@@ -628,7 +765,13 @@ def create_prefabs() -> PrefabConfig:
         "shadow_w": SHADOW_W,
         "shadow_e": SHADOW_E,
         "shadow_n": SHADOW_N,
-        "spawn_point": SPAWN_POINT,
+        "spawn1": SPAWN_POINT1,
+        "spawn2": SPAWN_POINT2,
+        "spawn3": SPAWN_POINT3,
+        "spawn4": SPAWN_POINT4,
+        "spawn5": SPAWN_POINT5,
+        "spawn6": SPAWN_POINT6,
+        "spawn7": SPAWN_POINT7,
         "potential_apple": POTENTIAL_APPLE,
         "river": get_water(),
         "potential_dirt": create_dirt_prefab("dirtWait"),
@@ -684,7 +827,7 @@ def create_scene():
 
 
 def create_avatar_object(
-    player_idx: int, target_sprite_self: Dict[str, Any]
+    player_idx: int, target_sprite_self: Dict[str, Any], spawn_group: str
 ) -> Dict[str, Any]:
     """Create an avatar object that always sees itself as blue."""
     # Lua is 1-indexed.
@@ -745,7 +888,7 @@ def create_avatar_object(
                     "index": lua_index,
                     "aliveState": live_state_name,
                     "waitState": "playerWait",
-                    "spawnGroup": "spawnPoints",
+                    "spawnGroup": spawn_group,
                     "actionOrder": ["move", "turn", "fireZap", "fireClean"],
                     "actionSpec": {
                         "move": {"default": 0, "min": 0, "max": len(_COMPASS)},
@@ -874,7 +1017,10 @@ def create_avatar_objects(num_players):
     """Returns list of avatar objects of length 'num_players'."""
     avatar_objects = []
     for player_idx in range(0, num_players):
-        game_object = create_avatar_object(player_idx, TARGET_SPRITE_SELF)
+        spawn_group = f"spawn{player_idx + 1}"
+        game_object = create_avatar_object(
+            player_idx, TARGET_SPRITE_SELF, spawn_group=spawn_group
+        )
         avatar_objects.append(game_object)
 
     return avatar_objects
